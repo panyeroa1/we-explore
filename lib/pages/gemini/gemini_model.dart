@@ -15,7 +15,7 @@ class GeminiModel extends FlutterFlowModel<GeminiWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (Gemini)] action in TextField widget.
+  // Stores action output result for [Backend Call - API (Explore)] action in TextField widget.
   ApiCallResponse? response;
 
   @override

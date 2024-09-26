@@ -63,7 +63,8 @@ class FFAppState extends ChangeNotifier {
     chat.insert(index, value);
   }
 
-  String _geminiApiKey = 'AIzaSyDYGlpMuTd5okrqGW2wBuqfUNR_aYB1sg4';
+  String _geminiApiKey =
+      '279216a928a5db9905961185a24099be58d4a34498eead707d38ee0f7fcc01b6';
   String get geminiApiKey => _geminiApiKey;
   set geminiApiKey(String value) {
     _geminiApiKey = value;

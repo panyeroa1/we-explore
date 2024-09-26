@@ -14,6 +14,7 @@ import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'gemini_model.dart';
 export 'gemini_model.dart';
@@ -283,7 +284,7 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                     safeSetState(
                                                                         () {});
                                                                     _model.response =
-                                                                        await GeminiCall
+                                                                        await ExploreCall
                                                                             .call(
                                                                       messagesJson: functions.formatMessages(FFAppState()
                                                                           .chat
@@ -291,8 +292,6 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                       systemMessage:
                                                                           FFAppState()
                                                                               .systemMessage,
-                                                                      apiKey: FFAppState()
-                                                                          .geminiApiKey,
                                                                     );
                                                                     if (_model
                                                                             .response
@@ -317,9 +316,10 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                             FFAppState().chat.length -
                                                                                 1,
                                                                             (e) => e
-                                                                              ..text = '${FFAppState().chat[FFAppState().chat.length - 1].text}${GeminiCall.segment(
+                                                                              ..text = '${FFAppState().chat[FFAppState().chat.length - 1].text}${getJsonField(
                                                                                 onMessageInput.serverSentEvent.jsonData,
-                                                                              )}',
+                                                                                r'''$.content.message''',
+                                                                              ).toString()}',
                                                                           );
                                                                           safeSetState(
                                                                               () {});
@@ -391,9 +391,11 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Inter',
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
                                                                         ),
                                                                     hintText:
                                                                         'Write your prompt here...',
@@ -402,7 +404,7 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                         .labelMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              'Inter',
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondaryText,
                                                                           fontSize:
@@ -411,6 +413,8 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.normal,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).labelMediumFamily),
                                                                         ),
                                                                     enabledBorder:
                                                                         InputBorder
@@ -430,13 +434,15 @@ class _GeminiWidgetState extends State<GeminiWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Inter',
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                         fontSize:
                                                                             14.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                       ),
                                                                   cursorColor:
                                                                       FlutterFlowTheme.of(

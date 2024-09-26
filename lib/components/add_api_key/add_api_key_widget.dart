@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_api_key_model.dart';
 export 'add_api_key_model.dart';
@@ -35,7 +36,7 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
             ? null
             : valueOrDefault<String>(
                 FFAppState().geminiApiKey,
-                'AIzaSyDYGlpMuTd5okrqGW2wBuqfUNR_aYB1sg4',
+                '279216a928a5db9905961185a24099be58d4a34498eead707d38ee0f7fcc01b6',
               ));
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -89,8 +90,12 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
                         'Add Your API Key',
                         style:
                             FlutterFlowTheme.of(context).headlineLarge.override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineLargeFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .headlineLargeFamily),
                                 ),
                       ),
                     ].divide(const SizedBox(width: 10.0)),
@@ -107,8 +112,12 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
                                 ),
                           ),
                           TextSpan(
@@ -126,8 +135,12 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
                           )
                         ],
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
                             ),
                       ),
                     ),
@@ -160,15 +173,25 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
                                     ),
                                 hintText: FFAppState().geminiApiKey,
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
                                     ),
                                 enabledBorder: InputBorder.none,
                                 focusedBorder: InputBorder.none,
@@ -187,6 +210,8 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
                                         .primaryText,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey('Inconsolata'),
                                   ),
                               minLines: 1,
                               validator: _model.textControllerValidator
@@ -220,9 +245,13 @@ class _AddApiKeyWidgetState extends State<AddApiKeyWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Inter',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
                                   color: Colors.white,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
                                 ),
                             elevation: 0.0,
                             borderSide: const BorderSide(

@@ -2,50 +2,49 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class GeminiCall {
+class ExploreCall {
   static Future<ApiCallResponse> call({
-    String? apiKey = 'AIzaSyDYGlpMuTd5okrqGW2wBuqfUNR_aYB1sg4',
     dynamic messagesJson,
     String? systemMessage = '',
   }) async {
     final messages = _serializeJson(messagesJson);
     final ffApiRequestBody = '''
 {
-  "system_instruction": {
-    "parts": {
-      "text": "$systemMessage"
-    }
-  },
-  "contents": $messages,
-  "safetySettings": [
+  "model": "meta-llama/Llama-3.2-3B-Instruct-Turbo",
+  "messages": [
     {
-      "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-      "threshold": "BLOCK_ONLY_HIGH"
+      "role": "user",
+      "content": "$messages"
+    },
+    {
+      "role": "assistant",
+      "content": "In marketing AI business automations, there are several key aspects to understand, but here are some of the most important ones:\\n\\n1. *Clear Goals and Objectives: Understand what you want to achieve with your marketing AI automation. What are your business objectives? What specific tasks do you want to automate? What metrics will you use to measure success?\\n\\n2. **Data Quality and Integration: High-quality data is essential for effective marketing AI automation. Ensure that your data is accurate, complete, and consistent. Integrate your data from various sources, such as CRM, email, and social media, to get a comprehensive view of your customers and prospects.\\n\\n3. **Automation Goals vs. Optimization Goals: Understand the difference between automation goals (e.g., automating a specific task) and optimization goals (e.g., improving conversion rates). Focus on optimizing your marketing AI automation to achieve better outcomes.\\n\\n4. **Machine Learning and AI Concepts: Understand the basics of machine learning and AI concepts, such as supervised and unsupervised learning, clustering, and predictive modeling. This will help you to design and implement effective marketing AI automation strategies.\\n\\n5. **Customer Journey Mapping: Map out the customer journey to identify opportunities for automation. Understand the customer‛s pain points, preferences, and behaviors to design targeted and effective marketing AI automation.\\n\\n6. **Personalization: Personalization is key to successful marketing AI automation. Use data and analytics to create personalized experiences that resonate with your customers and prospects.\\n\\n7. **Continuous Testing and Optimization: Marketing AI automation is not a one-time setup; it requires continuous testing and optimization. Regularly review and refine your automation strategies to ensure they are working effectively.\\n\\n8. **Integration with Other Marketing Channels: Marketing AI automation should be integrated with other marketing channels, such as email, social media, and content marketing, to create a cohesive and effective marketing strategy.\\n\\n9. **Budget Allocation: Understand the budget allocation for marketing AI automation and ensure that it is aligned with your business objectives. Allocate resources effectively to maximize ROI.\\n\\n10. **Measuring Success*: Establish clear metrics to measure the success of your marketing AI automation. Use data and analytics to track key performance indicators (KPIs) and adjust your strategies accordingly.\\n\\nSome popular marketing AI automation tools to consider:\\n\\n1. HubSpot\\n2. Marketo\\n3. Pardot\\n4. Salesforce\\n5. Mailchimp\\n6. Klaviyo\\n7. Salesforce Einstein\\n8. Google Analytics\\n9. Salesforce Automation Studio\\n10. Microsoft Power Automate ("
     }
   ],
-  "generationConfig": {
-    "stopSequences": [
-      "Title"
-    ],
-    "temperature": 1.0,
-    "maxOutputTokens": 800,
-    "topP": 0.8,
-    "topK": 10
-  }
+  "max_tokens": 512,
+  "temperature": 0.7,
+  "top_p": 0.7,
+  "top_k": 50,
+  "repetition_penalty": 1,
+  "stop": [
+    "<|eot_id|>",
+    "<|eom_id|>"
+  ],
+  "stream": true
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Gemini',
-      apiUrl:
-          'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:streamGenerateContent?alt=sse&key=$apiKey',
+      callName: 'Explore',
+      apiUrl: 'https://api.together.xyz/v1/chat/completions',
       callType: ApiCallType.POST,
       headers: {
+        'Authorization':
+            'Bearer 279216a928a5db9905961185a24099be58d4a34498eead707d38ee0f7fcc01b6',
         'Content-Type': 'application/json',
       },
       params: {},
@@ -59,15 +58,6 @@ class GeminiCall {
       alwaysAllowBody: false,
     );
   }
-
-  static String? segment(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.candidates[:].content.parts[:].text''',
-      ));
-  static String? role(dynamic response) => castToType<String>(getJsonField(
-        response,
-        r'''$.candidates[:].content.role''',
-      ));
 }
 
 class ApiPagingParams {
